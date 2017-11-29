@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<mata charset="utf-8">
+	<title>取样式的兼容性</title>
+	<style>
+		#div1{width: 100px;height: 100px;background: red;}
+
+	</style>
+	<script type="text/javascript">
+	window.onload=function()
+	{
+		var oDiv=document.getElementById("div1");
+
+		//alert(oDiv.style.width);仅仅适用于行间的css样式的获取
+		//alert(oDiv.currentStyle.width);//适用于IE浏览器
+		//alert(getComputedStyle(oDiv,false).width);//适用于火狐和谷歌
+		if(oDiv.currentStyle)//对于火狐和谷歌来说oDiv.currentStyle此类型是undefined 是假的
+		{
+			//IE
+			alert(oDiv.currentStyle.width);
+		}else{
+			//火狐谷歌
+			alert(getComputedStyle(oDiv,false).width);//但是有一点只能取出单一样式的属性 复合样式的不能 比如background后面需要加color才能取出它的颜色
+		}
+
+	}
+	</script>
+</head>
+<body>
+	<div id="div1"></div>
+</body>
+</html>

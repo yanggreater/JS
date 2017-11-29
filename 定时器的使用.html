@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>定时器的使用</title>
+	<script type="text/javascript">
+		function dou(n){//函数目的是将数字个位数补零和转化为字符串
+			if(n<10){
+				return '0'+n;
+			}else{
+				return ''+n;//此处的目的是返回保证是字符串而不是数字
+			}
+		}
+		window.onload=function(){
+			var aimg=document.getElementsByTagName('img');
+			//var str='161933';
+			function tick(){//根据Date()函数得到的时间来更新图片
+				var oDate=new Date();
+				var str=dou(oDate.getHours())+dou(oDate.getMinutes())+dou(oDate.getSeconds());//更新的源头就是str
+				
+				for(var i=0;i<aimg.length;i++)
+				{
+					aimg[i].src='images/'+str.charAt(i)+'.png';//根据str字符串来更新图片的地址,但是str[i]来获取字符串的具体字符方法对于低版本浏览器不兼容，所以用charAt()函数来获取
+				}
+			}
+			tick();//提前将图片更新一次避免页面刷新时出现0000000
+			setInterval(tick,1000);//定时器的使用调用函数tick，每秒更新
+		}
+	</script>
+	
+</head>
+<body style="background: black;color: white;">
+	<img src="images/0.png">
+	<img src="images/0.png">：
+	<img src="images/0.png">
+	<img src="images/0.png">：
+	<img src="images/0.png">
+	<img src="images/0.png">
+</body>
+</html>

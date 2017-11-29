@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>延时器演示</title>
+	<style type="text/css">
+		#div1{width: 50px;height:50px;background: red;float: left;}
+		#div2{width: 120px;height:100px;background: #ccc;float: left;margin: 10px;display: none;}
+	</style>
+	<script type="text/javascript">
+	window.onload=function(){//当然一样的程序可以合并Div1.onmouseout和Div2.onmouseout的代码可以
+			var Div1=document.getElementById("div1");
+		var Div2=document.getElementById("div2");
+		var time=null;//延时器控制变量
+		/*Div1.onmouseover=function(){
+			clearTimeout(time);
+			Div2.style.display='block';
+		}
+		Div1.onmouseout=function(){//移出时延时500毫秒后消失
+			time=setTimeout(function(){
+				Div2.style.display='none';
+			},500);
+			
+		}*/
+		Div1.onmouseover=Div2.onmouseover=function(){//目的是我在移出div1直接移入div2那么我就不能让div2消失 办法是在移入div2时清除移出div1时设置的延时 那么就div2就不会在延时后隐藏
+			clearTimeout(time);
+			Div2.style.display='block';//对于Div2来说这一段不是必须的 就是为了合并代码添加的一条无影响的代码
+		}
+		Div1.onmouseout=Div2.onmouseout=function(){//目的是在div2移出延时后消失  但是有情况是我直接移入div1也是移出div2的一种那么就会消失 这样我们只能在移入div1时将移出div2的延时消除
+			time=setTimeout(function(){
+				Div2.style.display='none';
+			},500);
+			
+		}
+	};
+	
+
+	</script>
+</head>
+<body>
+	<div id="div1"></div>
+	<div id="div2"></div>
+</body>
+</html>
