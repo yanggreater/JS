@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>表格排序</title>
+	<script type="text/javascript">
+	window.onload=function(){
+		
+		var oBut=document.getElementById('but1');
+		var oTab=document.getElementById('tab1');
+		oBut.onclick=function(){
+			var arr=[];//由于排序的问题但是我们要将表格中所有的行都赋值给一个数组，然后用数组来排序
+			for(var i=0;i<oTab.tBodies[0].rows.length;i++){
+				arr[i]=oTab.tBodies[0].rows[i];
+			}
+			arr.sort(function(tr1,tr2){//排序代码
+				var n1=parseInt(tr1.cells[0].innerHTML);
+				var n2=parseInt(tr2.cells[0].innerHTML);
+				return n1-n2;
+			});//在arr中已经排好。
+			for(var i=0;i<arr.length;i++){//排好之后就是将表格的元素换位置，实质就是删除和添加就是appendChild的功能了
+				oTab.tBodies[0].appendChild(arr[i]);
+			}
+		}
+		
+	};
+	</script>
+</head>
+<body>
+	<input type="button" id="but1" value="排序"/>
+	<table id="tab1" border="1" width="500">
+		<thead>
+			<td>ID</td>
+			<td>姓名</td>
+			<td>年龄</td>
+		</thead>
+		<tbody>
+			<tr>
+				<td>2</td>
+				<td>阿萨德</td>
+				<td>20</td>
+			</tr>
+			<tr>
+				<td>5</td>
+				<td>杨景校</td>
+				<td>20</td>
+			</tr>
+			<tr>
+				<td>21</td>
+				<td>vcb</td>
+				<td>20</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>Yui</td>
+				<td>20</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

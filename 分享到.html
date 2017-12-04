@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>分享到</title>
+	<style type="text/css">
+	*{margin: 0;padding: 0;}
+		#div1{width: 100px;height: 200px;background: red;position: absolute;top: 50px;left: -100px;}
+		#span1{width: 20px;height: 50px;position: absolute;right: -20px;top: 50px;background: yellow;line-height: 15px;}
+	</style>
+	<script type="text/javascript">
+	window.onload=function(){
+		var span=document.getElementById('span1');
+		var div=document.getElementById('div1');
+		div.onmouseover=function(){
+			move(0);
+		}
+		div.onmouseout=function(){
+			move(-100);
+		}
+	}
+	var time=null;// 注意的是一定要将定时器的返回值放在函数外部，防止每次产生新的变量time那么下面就关不掉之前的定时器
+	function move(target){
+		
+		var div=document.getElementById('div1');
+		var speed=0;//我们通常用speed来控制速度 而不是定时器里的30
+		if(div.offsetLeft<target){//通过当前的位置和目的位置比较来决定行走的方向
+			speed=10;
+		}else{
+			speed=-10;
+		}
+		clearTimeout(time);//对于这个东西我们是会指向它好多次，但是我们不管指几次每次运动只能有一个定时器，所以在之前必须将之前的定时器关了，再开一个新的定时器，否则，速度将会越来越快
+		time=setInterval(function(){
+			if(div.offsetLeft==target){//开启定时器和关闭必须对立
+				clearTimeout(time);
+			}else{
+				div.style.left=div.offsetLeft+speed+'px';
+			}
+			
+		},30);
+	}
+	</script>
+</head>
+<body>
+	<div id="div1">
+		<span id="span1">分享到</span>
+	</div>
+</body>
+</html>

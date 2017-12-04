@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>表格的简便方式</title>
+	<script type="text/javascript">
+	window.onload=function(){
+		var oTab=document.getElementById('tab1');
+		var oldcolor='';
+		for(var i=0;i<oTab.tBodies[0].rows.length;i++){
+			oTab.tBodies[0].rows[i].onmouseover=function(){
+				oldcolor=this.style.background;
+				this.style.background='green';
+			}
+			oTab.tBodies[0].rows[i].onmouseout=function(){
+				this.style.background=oldcolor;
+			}
+			if (i%2==0) {
+				oTab.tBodies[0].rows[i].style.background='#ccc';
+			}else{
+				oTab.tBodies[0].rows[i].style.background='';
+			}
+		}
+		var oText=document.getElementById("text1");
+		var oBot1=document.getElementById("bot1");
+		oBot1.onclick=function(){
+			for(var i=0;i<oTab.tBodies[0].rows.length;i++){
+
+			if(oTab.tBodies[0].rows[i].cells[1].innerHTML==oText.value){
+					oTab.tBodies[0].rows[i].style.background='red';
+				}
+			else{
+				oTab.tBodies[0].rows[i].style.background='';
+			}
+			}
+		}
+		
+}
+
+	</script>
+</head>
+<body>
+<input type="text" id="text1"/>
+<input type="button" id="bot1" value="搜索"/>
+	<table id="tab1" border="1" width="500">
+		<thead>
+			<td>ID</td>
+			<td>姓名</td>
+			<td>年龄</td>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>杨景校</td>
+				<td>20</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>问问企鹅王</td>
+				<td>21</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>说的</td>
+				<td>22</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>东方闪电</td>
+				<td>23</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
