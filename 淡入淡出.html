@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>图片的淡入淡出</title>
+</head>
+<style type="text/css">
+	#div1{width: 100px;height: 100px;background: blue;filter:alpha(opactiy:30) ;opacity: 0.3}
+</style>
+<script type="text/javascript">
+window.onload=function(){
+	var oDiv=document.getElementById("div1");
+	oDiv.onmouseover=function(){
+		move(100);
+	}
+	oDiv.onmouseout=function(){
+		move(30);
+	}
+}
+var time=null;
+var alpha=30;
+function move(target){
+	
+	var oDiv=document.getElementById("div1");
+	var speed=0;
+	clearInterval(time);
+	if(alpha<target){
+		speed=10;
+	}else{
+		speed=-10;
+	}
+		time=setInterval(function(){
+	
+			if(alpha==target){
+				clearInterval(time);
+			}else{
+					alpha=alpha+speed;
+					oDiv.style.filter='alpha(opactiy:'+alpha+')';//这两句是兼容性的问题 IE问题
+					oDiv.style.opacity=alpha/100;}//火狐和谷歌的样式
+		},30);
+	
+}
+</script>
+<body>
+	<div id="div1"></div>
+</body>
+</html>

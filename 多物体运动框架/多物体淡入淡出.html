@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>多物体淡入淡出</title>
+	<style type="text/css">
+		div{width: 200px;height: 200px;background: red;margin: 20px;float: left;filter: alpha(opacity:30);opacity: 0.3;}
+	</style>
+	<script type="text/javascript">
+	window.onload=function(){
+		var adiv=document.getElementsByTagName('div');
+
+		for(var i=0;i<adiv.length;i++){
+			adiv[i].alpha=30;
+			adiv[i].time=null;
+			adiv[i].onmouseover=function(){
+				move(this,100);
+			}
+			adiv[i].onmouseout=function(){
+				move(this,30);
+			}
+		}
+	}
+		function move(obj,target){//对于多物体运动框架一定要记住第一个参数
+			clearInterval(obj.time);
+			obj.time=setInterval(function(){
+				var speed=(target-obj.alpha)/6;
+				speed=speed>0?Math.ceil(speed):Math.floor(speed);
+				if (obj.alpha==target) {
+					clearInterval(obj.time);
+				}else{
+					obj.alpha=obj.alpha+speed;
+					obj.style.filter='alpha(opacity:'+obj.alpha+')';
+					obj.style.opacity=obj.alpha/100;
+				}
+			},30);
+		}
+	</script>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+
+</body>
+</html>

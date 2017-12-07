@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>多物体运动框架</title>
+</head>
+<style type="text/css">
+	div{width: 100px;height: 50px;background: red; border: 10px solid black;}
+</style>
+<script type="text/javascript">
+window.onload=function(){
+	var adiv=document.getElementsByTagName('div');
+
+	for(var i=0;i<adiv.length;i++){
+		adiv[i].time=null;
+		adiv[i].onmouseover=function(){
+			move(this,300);
+		}
+		adiv[i].onmouseout=function(){
+			move(this,100);
+		}
+	}
+};
+	function move(obj,target){
+
+		clearInterval(obj.time);
+		obj.time=setInterval(function(){
+			var speed=0;
+			speed=(target-obj.offsetWidth)/3;
+			speed=speed>0?Math.ceil(speed):Math.floor(speed);//变速的必须要点
+			if(obj.offsetWidth==target){
+				clearInterval(obj.time);
+			}else{
+				obj.style.width=obj.offsetWidth+speed+'px';
+			}
+		},30);
+	}
+</script>
+<body>
+<div></div><br/>
+<div></div><br/>
+
+<div></div><br/>
+</body>
+</html>

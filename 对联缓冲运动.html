@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>对联滚动</title>
+	<style type="text/css">
+		body{height: 2000px;}
+		#div1{width: 20px;height: 100px;position: absolute;background: red;right: 0;bottom: 0}
+	</style>
+	<script type="text/javascript">
+	window.onscroll=function(){
+		var div=document.getElementById("div1");
+		var top=document.documentElement.scrollTop||document.body.scrollTop;//获取滑轮的位置也就是不在视野范围内高度
+		var target=(document.documentElement.clientHeight-div.offsetHeight)/2+top;//得到目标位置
+		move(parseInt(target));//此处为什么要用到parseInt函数是为了将target转化为整数，因为上面是除了2可能会出现小数，而像素最小为1，就会自动将小数去掉，但是去掉又不满足了下面和的条件 所以那个框就会不断地动。
+	}
+	var time=null;
+	function move(target){//缓冲运动的函数
+		var speed=0;
+		clearInterval(time);
+		time=setInterval(function(){
+			 var div=document.getElementById("div1");
+			 speed=(target-div.offsetTop)/2;
+			 speed=speed>0?Math.ceil(speed):Math.floor(speed);//速度为了将像素都向上取整(ceil)和向下取整（floor）
+			 if(div.offsetTop==target){
+			 	clearInterval(time);
+			 }else{
+			 	div.style.top=div.offsetTop+speed+'px';
+			 }
+		},30);
+	}
+	</script>
+</head>
+<body>
+	<div id="div1"></div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>可以任意改变值的运动框架</title>
+</head>
+<script src="move.js"></script>
+<style type="text/css">
+	div{width: 100px;height: 100px;background: red;border: 10px solid black;margin: 10px;float: left;filter: alpha(opacity:30);opacity: 0.3;}
+</style>
+<script type="text/javascript">
+window.onload=function(){
+	var odiv1=document.getElementById('div1');
+	//var odiv2=document.getElementById('div2');
+	//var odiv3=document.getElementById('div3');
+	//var odiv4=document.getElementById('div4');
+	odiv1.onmouseover=function(){
+		move(this,'height',400,function(){
+			move(odiv1,'width',400,function(){
+				move(odiv1,'opacity',100);
+			})
+		});
+	}
+	odiv1.onmouseout=function(){
+		move(this,'height',100,function(){
+			move(odiv1,'width',100,function(){
+				move(odiv1,'opacity',30);
+			})
+		});
+	}
+	/*odiv2.onmouseover=function(){
+		move(this,'width',400);
+	}
+	odiv2.onmouseout=function(){
+		move(this,'width',100);
+	}
+	odiv3.onmouseover=function(){
+		move(this,'fontSize',50);
+	}
+	odiv3.onmouseout=function(){
+		move(this,'fontSize',10);
+	}
+	odiv4.onmouseover=function(){
+		//move(this,'borderWidth',100);
+		move(this,'opacity',100);
+	}
+	odiv4.onmouseout=function(){
+		move(this,'opacity',30);
+	}*/
+}
+	 
+	
+</script>
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+<div id="div3">变字体</div>
+<div id="div4"></div>
+<input type="text" id="txt"/>
+</body>
+</html>
