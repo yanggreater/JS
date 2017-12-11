@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>client的问题</title>
+</head>
+<style type="text/css">
+	div{width: 10px;height: 10px;position: absolute;background: red;}
+</style>
+<script type="text/javascript">
+function position(ev){//获取位置函数
+	var top=document.documentElement.scrollTop||document.body.scrollTop;//获取滑轮的位置也就是不在视野范围内高度
+	var left=document.documentElement.scrollLeft||document.body.scrollLeft;//获取滑轮的位置也就是不在视野范围内高度
+	
+	return {x:ev.clientX+left,y:ev.clientY+top};
+}
+window.onload=function(){
+	
+	document.onmousemove=function(ev){//问题就是clientX它们得到的是可视区的长度,
+		var oEvent=ev||event;
+		var pos=position(oEvent);//将event事件传入
+
+		var adiv=document.getElementsByTagName('div');
+
+		for(var i=adiv.length-1;i>0;i--){//做法为后一个跟着前一个走
+			adiv[i].style.left=adiv[i-1].offsetLeft+'px';
+			adiv[i].style.top=adiv[i-1].offsetTop+'px';
+		}
+		adiv[0].style.left=pos.x+'px';//第一个跟着鼠标走
+		adiv[0].style.top=pos.y+'px';
+	}
+}
+</script>
+<body >
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+
+</body>
+</html>

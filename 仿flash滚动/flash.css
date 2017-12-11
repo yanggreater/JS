@@ -1,0 +1,17 @@
+*{margin: 0;padding: 0;}
+		li{list-style: none;}
+		.play { width: 400px; height: 430px; margin: 50px auto 0; background: #999; font: 12px Arial; }
+		.big_pic{width: 400px;height:320px;position: relative;}
+		.big_pic .mark_left{width:200px;height: 320px;background: yellow;position: absolute;left: 0;top: 0;filter: alpha(opacity:0);opacity: 0;z-index: 3000;}
+		.big_pic .mark_right{width:200px;height: 320px;background: blue;position: absolute;left: 200px;top: 0;filter: alpha(opacity:0);opacity: 0;z-index: 3000;}
+		.pre{width: 60px;height: 60px;position: absolute;left: 10px;top: 130px;background: red;z-index: 3001;cursor: pointer;filter: alpha(opacity:0);opacity: 0;background: url(images/btn.gif) no-repeat;}
+		.next{width: 60px;height: 60px;position: absolute;right: 10px;top: 130px;background: blue;z-index: 3001;cursor: pointer;filter: alpha(opacity:0);opacity: 0;background: url(images/btn.gif) no-repeat 0 -60px;}
+		.bottom{width: 400px;height: 25px;;position: absolute;bottom: 0;background: #000;filter: alpha(opacity:60);opacity: 0.6;z-index:3000;cursor: pointer;}
+		.bottom .text_left{color: white;position: absolute;left: 10px;top: 5px;}
+		.bottom .text_right{color: white;position: absolute;right: 10px;top: 5px;}
+		.big_pic li{position: absolute;top: 0;left: 0;z-index: 0;}
+
+		.small_pic{position: relative;width: 380px;height: 94px;left: 10px;top: 7px;overflow: hidden;}
+		.small_pic ul {position: absolute;width: 780px;height: 94px;}
+		.small_pic ul li{width: 120px;height: 94px;float: left;padding-right: 10px;cursor: pointer;}
+		.small_pic ul li img{width: 120px;height: 94px;}

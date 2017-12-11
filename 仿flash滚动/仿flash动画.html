@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>		
+	<meta charset="utf-8">
+	<title>仿flasf动画</title>
+	<link rel="stylesheet" type="text/css" href="flash.css">
+	<script src="move2.js"></script>
+	<script type="text/javascript">
+	function getClass(obj,classname){
+		var arr=obj.getElementsByTagName('*');
+		var aResult=[];
+		for(var i=0;i<arr.length;i++){
+			if (arr[i].className==classname) {
+				aResult.push(arr[i]);
+			}
+		}
+		return aResult;
+	}
+	window.onload=function(){
+		var oDiv=document.getElementById('play');
+		var pre=getClass(oDiv,'pre')[0];
+		var next=getClass(oDiv,'next')[0];
+		var left=getClass(oDiv,'mark_left')[0];
+		var right=getClass(oDiv,'mark_right')[0];
+
+		var oUl=getClass(oDiv,'big_pic')[0];
+		var abigpic=oUl.getElementsByTagName('li');
+
+
+		var oDivsmall=getClass(oDiv,'small_pic')[0];
+		var asmallpic=oDivsmall.getElementsByTagName('li');
+
+		var nowindex=2;
+
+		pre.onmouseover=left.onmouseover=function(){
+			move(pre,{opacity:100});
+		}
+		pre.onmouseout=left.onmouseout=function(){
+			move(pre,{opacity:0});
+		}
+		next.onmouseover=right.onmouseover=function(){
+			move(next,{opacity:100});
+		}
+		next.onmouseout=right.onmouseout=function(){
+			move(next,{opacity:0});
+		}
+
+		for(var i=0;i<asmallpic.length;i++){
+			asmallpic[i].index=i;
+			asmallpic[i].onclick=function(){
+
+				abigpic[this.index].style.zIndex=nowindex++;
+				abigpic[this.index].style.height=0;
+
+				move(abigpic[this.index],{height:320});
+			
+
+			}
+		}
+	}
+	
+	</script>
+</head>
+<body>
+	<div class ="play" id="play">
+		<ul class="big_pic">
+			<div class="pre" id="pre"></div>
+			<div class="next" id="next"></div>
+			<a class="mark_left" href="#" id="mark_left"></a>
+			<a class="mark_right" href="#" id="mark_right"></a>
+			<div class="bottom">
+				<span class="text_left">加载图片说明</span>
+				<span class="text_right">计算图片数量</span>
+			</div>
+			<li style="z-index: 1"><img src="images/1.jpg"></li>
+			<li><img src="images/2.jpg"></li>
+			<li><img src="images/3.jpg"></li>
+			<li><img src="images/4.jpg"></li>
+			<li><img src="images/5.jpg"></li>
+			<li><img src="images/6.jpg"></li>
+		</ul>
+		<div class="small_pic">
+			<ul >
+	            <li style="filter: 100; opacity: 1;"><img src="images/1.jpg" /></li>
+	            <li><img src="images/2.jpg" /></li>
+	            <li><img src="images/3.jpg" /></li>
+	            <li><img src="images/4.jpg" /></li>
+	            <li><img src="images/5.jpg" /></li>
+	            <li><img src="images/6.jpg" /></li>
+	        </ul>
+
+		</div>
+
+	</div>
+</body>
+</html>
