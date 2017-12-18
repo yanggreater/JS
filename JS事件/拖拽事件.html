@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>拖拽事件</title>
+</head>
+<style type="text/css">
+	div{position: absolute;width: 200px;height: 200px;background: red;}
+</style>
+<script type="text/javascript">
+window.onload=function(){
+	var oDiv=document.getElementById('div1');
+	var X=0;
+	var Y=0;
+	oDiv.onmousedown=function(ev){//鼠标按下事件
+		var Event=ev||event;
+		X=Event.clientX-oDiv.offsetLeft;
+		Y=Event.clientY-oDiv.offsetTop;
+		document.onmousemove=function(ev){//当鼠标按下同时移动时的事件,为什么是全局事件是因为当移动快时鼠标脱离了div那就不会再移动了，下面同理
+			var Event=ev||event;
+			var L=Event.clientX-X;
+			var T=Event.clientY-Y;
+			if(L<0){//为了不让用户将窗口脱出浏览器
+				L=0;
+			}
+			if(L>document.documentElement.clientWidth-oDiv.offsetWidth){//用浏览器可视区的长度-div长度 就是临界
+				L=document.documentElement.clientWidth-oDiv.offsetWidth;
+			}
+			if(T<0){
+				T=0;
+			}
+			if(T>document.documentElement.clientHeight-oDiv.offsetHeight){
+				T=document.documentElement.clientHeight-oDiv.offsetHeight;
+			}
+			oDiv.style.left=L+'px';//在定位div随着鼠标移动时的位置
+			oDiv.style.top=T+'px';
+		}
+		document.onmouseup=function(){//当鼠标抬起时将移动时的事件关闭同时不留垃圾将up事件也关闭
+			document.onmousemove=null;
+			document.onmouseup=null;
+		}
+		
+
+	}
+}
+</script>
+<body>
+<div id="div1"></div>
+</body>
+</html>

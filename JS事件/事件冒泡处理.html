@@ -13,16 +13,17 @@ window.onload=function(){
 	var oBtn=document.getElementById('btn');
 	var oDiv=document.getElementById('div1');
 	
-	oBtn.onclick=function(ev){
+	oBtn.onclick=function(ev){//由于oBtn父级就是全局事件，那么当执行了显示区块事件的瞬间后就会执行父级的事件即隐藏区块那么在我们肉眼看来区块就根本没有出现过
 		var oEvent=ev||event;
 
 		oDiv.style.display='block';
 		
-		oEvent.cancelBubble = true;
+		oEvent.cancelBubble = true;//取消事件冒泡
+		//alert(1); 将父级事件和子元素事件中间断开，观察是否区块是不是先显示再隐藏
 
 		
 	}
-	document.onclick=function(){
+	document.onclick=function(){//document指的是全局事件，在页面上任何处点击就会执行
 		oDiv.style.display='none';
 
 	}
