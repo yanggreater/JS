@@ -8,7 +8,7 @@
 	window.onload=function(){
 		var text1=document.getElementById('txt1');
 		var text2=document.getElementById('txt2');
-		text1.onkeydown=function(ev){
+		text1.onkeydown=function(ev){//当键盘按下时事件
 			var Event=ev||event;
 			if(Event.keyCode==13&&Event.ctrlKey){//指的是当我按下回车加ctrl时才能够提交 对于ctrl是否按下通过事件判断ctrlKey
 				text2.value+=text1.value+'\n';

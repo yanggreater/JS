@@ -5,7 +5,7 @@
 	<title>拖拽事件</title>
 </head>
 <style type="text/css">
-	div{position: absolute;width: 200px;height: 200px;background: red;}
+	div{position: absolute;width: 50px;height: 50px;background: red;}
 </style>
 <script type="text/javascript">
 window.onload=function(){
@@ -35,16 +35,21 @@ window.onload=function(){
 			oDiv.style.left=L+'px';//在定位div随着鼠标移动时的位置
 			oDiv.style.top=T+'px';
 		}
-		document.onmouseup=function(){//当鼠标抬起时将移动时的事件关闭同时不留垃圾将up事件也关闭
+		document.onmouseup=function(){//当鼠标抬起时将移动时的事件关闭同时不留垃圾将up事件也关闭，此处document可以为oDiv因为 我们鼠标起来的时候
 			document.onmousemove=null;
 			document.onmouseup=null;
+			//oDiv.releaseCapture();这个函数是解决IE 6-8的
 		}
-		
+		//oDiv.setCapture();是将页面上所有的事件狗集中在oDiv上，页面上其他的元素此时都没有默认事件都是现在oDiv的事件,但是仅仅是IE能用
+		return false;//解决浏览器默认行为,指的就是当按下鼠标的时候，不但会对对象产生事件，还会对页面上的其它元素有浏览器的默认事件，但是只能解决IE9，火狐，谷歌 但是不能支持IE 6-8
 
 	}
 }
 </script>
 <body>
-<div id="div1"></div>
+fsfsfsfsfsfsfsfs<br/>
+<div id="div1">sdsdsdsdssdsdsd</div>
+fsfsfsfsfsfsfsfs<br/>
+fsfsfsfsfsfsfsfs<br/>
 </body>
 </html>
