@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>AJAX</title>
+	<script src="new_ajax.js"></script>
+	<script type="text/javascript">
+
+	window.onload=function(){
+		var obut=document.getElementById('but1');
+		var oul=document.getElementById('ul1');
+		obut.onclick=function(){
+			ajax('a2.txt?t='+new Date().getTime(),function(str){//去掉缓存的方法就是通过对目标加一个时间戳，使得访问的数据实时更新，因为我们的用到的方法就是get传值的方法使得域名每次不一样，从浏览器重新访问而不是将缓冲的数据显示出来
+				var arr=eval(str);
+				for(var i=0;i<arr.length;i++){
+					var oLi=document.createElement('li');
+					oLi.innerHTML='用户名：'+arr[i].user+'密码：'+arr[i].password;
+					oul.appendChild(oLi);
+				}
+			},function(str){
+				alert(str+'您所找的页面不存在');
+			});
+		}
+	}
+	</script>
+
+</head>
+<body>
+	<input type="button" id="but1" value="读取"/>
+	<ul id="ul1">
+	</ul>
+</body>
+</html>
