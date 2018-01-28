@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>用面向对象写选项卡</title>
+</head>
+<style type="text/css">
+	#div1 input{background: #ccc;margin-bottom: 10px;}
+	#div1 input.active{background: yellow;}
+	#div1 div{background: #ccc;display: none;width: 200px;height: 200px;}
+</style>
+<script type="text/javascript">
+window.onload=function(){
+	new Tabswitch('div1');
+}
+	function Tabswitch(id){
+		var _this=this;//是将我们的对象先赋值给一个变量，此时的对象就会 this
+		var oDiv=document.getElementById(id);
+		this.ain=document.getElementsByTagName('input');
+		this.adiv=oDiv.getElementsByTagName('div');
+		for(var i=0;i<this.ain.length;i++){//这个循环是对所有的按钮定义一个点击事件
+			this.ain[i].index=i;
+			this.ain[i].onclick=function(){
+				_this.fnclick(this);//括号里的this是所属this.ain[i]，即是按钮
+			}
+			
+		}
+	}
+	Tabswitch.prototype.fnclick=function(obn){
+				for (var i = 0; i < this.ain.length; i++) {//这个循环是对之前的特性进行消除
+					this.ain[i].className='';
+					this.adiv[i].style.display='none';
+				}
+				//对当前状态进行定义
+				obn.className='active';
+				this.adiv[obn.index].style.display='block';
+	}
+
+</script>
+<body>
+<div id="div1">
+	<input type="button" value="aaa" class="active" />
+	<input type="button" value="bbb"/>
+	<input type="button" value="ccc"/>
+	<div style="display:block;">杨景校</div>
+	<div>杨靖璇</div>
+	<div>刘四女</div>
+</div>
+</body>
+</html>

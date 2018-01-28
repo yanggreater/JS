@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>面向对象</title>
+	<script type="text/javascript">
+	window.onload=function(){
+		function Createperson(name,id){//原型模式定义类
+			//原料
+			//var operson=new Object();
+			//加工，就是对对象添加一些属性和方法
+			//构造函数定义对象各自不同的东西
+			this.name=name;//this就代表你新实例化的一个对象，具有单一性
+			this.id=id;
+			//用原型定义相同的东西是为了节省资源，原型具有广泛性
+			Createperson.prototype.showname=function(){
+				alert(this.name);
+			}
+			Createperson.prototype.showid=function(){
+				alert(this.id);
+			}
+			//出厂，将加工好的对象返回
+			//return operson;
+		}
+		var per1=new Createperson('杨',1);//对于函数来说，在前面加上new那么在函数内部就会自动做两件事，1，自动创建一个this对象；2，自动将对象返回，在函数内部我们自己做的就是给这个对象加工，加属性和方法
+		var per2=new Createperson('刘',2);
+		alert(per1.showname==per2.showname);
+
+	
+	}
+	</script>
+</head>
+<body>
+
+</body>
+</html>
