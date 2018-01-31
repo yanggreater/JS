@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-	
-	<meta charset="utf-8">
-	<title>cookie</title>
-	<script type="text/javascript">
-
-		function setcookie(name,value,iDay){//设置cookie的函数
+function setCookie(name,value,iDay){//设置cookie的函数
 		var oDate=new Date();
 		oDate.setDate(oDate.getDate()+iDay);
 		document.cookie=name+'='+value+';expires='+oDate;
@@ -25,18 +17,6 @@
 		    }  
 		    return "";  
 		}  
-		function removecookie(name){
+		function removeCookie(name){
 			setcookie(name,1,-1);
 		}
-		//removecookie('id');
-		//alert(document.cookie);
-		alert(getCookie('username'));
-	
-	
-</script>
-</head>
-
-<body>
-
-</body>
-</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>利用cookie的实例</title>
+	<script src="cookie.js"></script>
+	<script type="text/javascript">
+	window.onload=function(){
+
+		var oform=document.getElementById('form1');
+		var ouser=document.getElementsByName('user')[0];
+
+		
+		oform.onsubmit=function(){
+			setCookie('user',ouser.value,14);//在表单提交的时候将用户保存到cookie中
+		}
+		ouser.value=getCookie('user');//再次刷新时候就会将cookie中的值给到表单中
+	}
+</script>
+</head>
+
+
+<body>
+	<form action="www.baidu.com" id="form1">
+		用户：<input type="text" name="user"/><br/>
+		密码：<input type="password" name="pass"></br>
+		<input type="submit" />
+	</form>
+</body>
+</html>
